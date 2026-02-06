@@ -1,26 +1,101 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
+  /* Font Family - Menggunakan Bricolage Grotesque sesuai konsep Anda */
+  --font-sans: "Bricolage Grotesque", "Plus Jakarta Sans", ui-sans-serif, system-ui;
+
+  /* Brand Colors - Deep Forest Green & Sunset Gold */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Base: Deep Forest Green (#062c2d) */
+  --background: #062c2d;
+  --foreground: #ffffff;
+
+  /* Card & Glassmorphism Base */
+  --card: rgba(6, 44, 45, 0.4);
+  --card-foreground: #ffffff;
+  --popover: #062c2d;
+  --popover-foreground: #ffffff;
+
+  /* Accent: Sunset Gold (#f59e0b) */
+  --primary: #f59e0b;
+  --primary-foreground: #062c2d;
+
+  --secondary: rgba(245, 158, 11, 0.1);
+  --secondary-foreground: #f59e0b;
+
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: #a1a1aa;
+
+  --accent: rgba(245, 158, 11, 0.2);
+  --accent-foreground: #ffffff;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #f59e0b;
+
+  --radius: 1rem; /* Rounded corners lebih besar untuk style modern */
+}
+
+/* Dark mode aesthetic (Karena base kita sudah gelap, kita buat lebih deep) */
+.dark {
+  --background: #031a1b;
+  --card: rgba(3, 26, 27, 0.6);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv11";
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Glassmorphism Utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

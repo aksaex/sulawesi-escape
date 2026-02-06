@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Destination {
+  id          String    @id @default(cuid())
+  title       String
+  location    String
+  description String    @db.Text 
+  price       Int
+  image       String   
+  bookings    Booking[]
+  createdAt   DateTime  @default(now())
+}
+
+model Booking {
+  id            String      @id @default(cuid())
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  customerName  String
+  customerWa    String
+  guestCount    Int
+  bookingDate   DateTime
+  status        String      @default("PENDING")
+  createdAt     DateTime    @default(now())
+}
