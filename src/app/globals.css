@@ -99,3 +99,25 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* src/app/globals.css */
+
+html {
+  /* Pastikan html selalu mengizinkan scroll */
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+body {
+  /* Memaksa body untuk selalu auto agar tidak terkunci oleh widget */
+  overflow-y: auto !important; 
+  overflow-x: hidden !important;
+  height: auto !important;
+  position: relative !important; /* Mencegah posisi fixed yang sering mengunci layar */
+}
+
+/* Khusus untuk menimpa inline style yang sering disisipkan skrip luar */
+[style*="overflow: hidden"], 
+[style*="overflow:hidden"] {
+  overflow: auto !important;
+}
